@@ -12,13 +12,26 @@
 #import "AppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
 
+@class CoCell;
+
+@protocol playVideoDelegate <NSObject>
+
+@required
+
+- (void) playVideo : (NSURL *)url;
+
+@end
+
 @interface CoVCNew : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITableViewDataSource,UITableViewDelegate, UIScrollViewDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (strong, nonatomic) MPMoviePlayerViewController *moviePlayerVC;
+@property (strong, nonatomic) MPMoviePlayerController *moviePlayer;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) id<playVideoDelegate> delegate;
+
 @property NSMutableArray *arrUrl;
 @property NSMutableArray *arrTitles;
 @property NSMutableArray *arrThumbnail;

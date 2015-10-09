@@ -23,6 +23,10 @@
 		CE1A3A1E1BC54B67000836E2 /* PBJVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A3A1B1BC54B67000836E2 /* PBJVideoPlayerController.m */; settings = {ASSET_TAGS = (); }; };
 		CE1A3A1F1BC54B67000836E2 /* PBJVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A3A1D1BC54B67000836E2 /* PBJVideoView.m */; settings = {ASSET_TAGS = (); }; };
 		CE1A3A231BC54CD2000836E2 /* CoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A3A221BC54CD2000836E2 /* CoCell.m */; settings = {ASSET_TAGS = (); }; };
+		CEE499081BC7A872008672BF /* FireVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE499071BC7A872008672BF /* FireVC.m */; settings = {ASSET_TAGS = (); }; };
+		CEE4990A1BC7E166008672BF /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE499091BC7E166008672BF /* CoreAudio.framework */; };
+		CEE4990C1BC7E174008672BF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE4990B1BC7E174008672BF /* CoreGraphics.framework */; };
+		CEE4990E1BC7E17C008672BF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE4990D1BC7E17C008672BF /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +78,11 @@
 		CE1A3A1D1BC54B67000836E2 /* PBJVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBJVideoView.m; sourceTree = "<group>"; };
 		CE1A3A211BC54CD2000836E2 /* CoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoCell.h; sourceTree = "<group>"; };
 		CE1A3A221BC54CD2000836E2 /* CoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoCell.m; sourceTree = "<group>"; };
+		CEE499061BC7A872008672BF /* FireVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireVC.h; sourceTree = "<group>"; };
+		CEE499071BC7A872008672BF /* FireVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FireVC.m; sourceTree = "<group>"; };
+		CEE499091BC7E166008672BF /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		CEE4990B1BC7E174008672BF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CEE4990D1BC7E17C008672BF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +90,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEE4990E1BC7E17C008672BF /* AVFoundation.framework in Frameworks */,
+				CEE4990C1BC7E174008672BF /* CoreGraphics.framework in Frameworks */,
+				CEE4990A1BC7E166008672BF /* CoreAudio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +136,7 @@
 		CE1A39C91BC4F103000836E2 /* coreData */ = {
 			isa = PBXGroup;
 			children = (
+				CEE4990F1BC7E184008672BF /* Frameworks */,
 				CE1A3A001BC4F3AE000836E2 /* AppDelegate */,
 				CE1A3A011BC4F3BB000836E2 /* MVC */,
 				CE1A39CA1BC4F103000836E2 /* Supporting Files */,
@@ -181,6 +194,7 @@
 		CE1A3A021BC4F3D1000836E2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CEE499051BC7A851008672BF /* FireVC */,
 				CE1A3A061BC4FA95000836E2 /* CommunityVC */,
 				CE1A3A051BC4FA8C000836E2 /* CoVC */,
 			);
@@ -256,6 +270,26 @@
 				CE1A3A221BC54CD2000836E2 /* CoCell.m */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		CEE499051BC7A851008672BF /* FireVC */ = {
+			isa = PBXGroup;
+			children = (
+				CEE499061BC7A872008672BF /* FireVC.h */,
+				CEE499071BC7A872008672BF /* FireVC.m */,
+			);
+			name = FireVC;
+			sourceTree = "<group>";
+		};
+		CEE4990F1BC7E184008672BF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CEE4990D1BC7E17C008672BF /* AVFoundation.framework */,
+				CEE4990B1BC7E174008672BF /* CoreGraphics.framework */,
+				CEE499091BC7E166008672BF /* CoreAudio.framework */,
+			);
+			name = Frameworks;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,6 +429,7 @@
 				CE1A3A151BC50942000836E2 /* Detail.m in Sources */,
 				CE1A3A0F1BC4FAD4000836E2 /* CommunityVC.m in Sources */,
 				CE1A3A1F1BC54B67000836E2 /* PBJVideoView.m in Sources */,
+				CEE499081BC7A872008672BF /* FireVC.m in Sources */,
 				CE1A3A231BC54CD2000836E2 /* CoCell.m in Sources */,
 				CE1A3A0C1BC4FAC3000836E2 /* CoVC.m in Sources */,
 				CE1A39D81BC4F103000836E2 /* coreData.xcdatamodeld in Sources */,
@@ -578,6 +613,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.code-brew.coreDataTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "551330e6-cd75-4ed4-a351-98303f40729e";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/coreData.app/coreData";
 			};
 			name = Debug;
@@ -590,6 +626,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.code-brew.coreDataTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "551330e6-cd75-4ed4-a351-98303f40729e";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/coreData.app/coreData";
 			};
 			name = Release;
@@ -601,6 +638,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.code-brew.coreDataUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "551330e6-cd75-4ed4-a351-98303f40729e";
 				TEST_TARGET_NAME = coreData;
 				USES_XCTRUNNER = YES;
 			};
@@ -613,6 +651,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.code-brew.coreDataUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "551330e6-cd75-4ed4-a351-98303f40729e";
 				TEST_TARGET_NAME = coreData;
 				USES_XCTRUNNER = YES;
 			};

@@ -285,9 +285,19 @@
         
         NSManagedObject *video = [self.arrUrl objectAtIndex:_playingIndex.row];
         NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@", [video valueForKey:@"path"]]];
-        _moviePlayerVC = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
-        [self presentMoviePlayerViewControllerAnimated:_moviePlayerVC];
         
+        CoCell *cell = (CoCell *)[_tableView cellForRowAtIndexPath:_playingIndex];
+        _moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(moviePlayBackDidFinish:)
+                                                    name : MPMoviePlayerPlaybackDidFinishNotification
+                                                   object:_moviePlayer];
+        _moviePlayer.controlStyle = MPMovieControlStyleDefault;
+        _moviePlayer.view.frame = cell.videoView.frame;
+        [cell.videoView addSubview:_moviePlayer.view];
+        _moviePlayer.movieSourceType = MPMovieSourceTypeFile;
+        [_moviePlayer prepareToPlay];
+        [_moviePlayer play];
     }
 }
 
@@ -323,8 +333,20 @@
     
     NSManagedObject *video = [self.arrUrl objectAtIndex:_playingIndex.row];
     NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@", [video valueForKey:@"path"]]];
-    _moviePlayerVC = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
-    [self presentMoviePlayerViewControllerAnimated:_moviePlayerVC];
+    CoCell *cell = (CoCell *)[_tableView cellForRowAtIndexPath:_playingIndex];
+    
+    _moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(moviePlayBackDidFinish:)
+                                                name : MPMoviePlayerPlaybackDidFinishNotification
+                                               object:_moviePlayer];
+
+    _moviePlayer.controlStyle = MPMovieControlStyleDefault;
+    _moviePlayer.view.frame = cell.videoView.frame;
+    [cell.videoView addSubview:_moviePlayer.view];
+    _moviePlayer.movieSourceType = MPMovieSourceTypeFile;
+    [_moviePlayer prepareToPlay];
+    [_moviePlayer play];
 
 }
 
