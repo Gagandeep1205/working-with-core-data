@@ -555,14 +555,14 @@ typedef void (^PBJVideoPlayerBlock)();
 //- (void) videoShallBegin : (BOOL)start{
 //
 //    if (start) {
-////        _playbackState = PBJVideoPlayerPlaybackStatePlaying;
+//        _playbackState = PBJVideoPlayerPlaybackStatePlaying;
 //        [self playFromBeginning];
 //    }
 //    
-////    else{
-//////        _playbackState = PBJVideoPlayerPlaybackStatePaused;
-////        [self stop];
-////    }
+//    else{
+//        _playbackState = PBJVideoPlayerPlaybackStatePaused;
+//        [self stop];
+//    }
 //}
 
 @end

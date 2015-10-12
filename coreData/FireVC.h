@@ -34,7 +34,9 @@
 @property NSArray *arrUrl;
 @property NSInteger seconds;
 @property NSInteger minutes;
+
 @property BOOL recording;
+@property BOOL playing;
 
 - (IBAction)actionBtnStop:(id)sender;
 - (IBAction)actionBtnPlay:(id)sender;

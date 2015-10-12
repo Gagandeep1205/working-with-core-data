@@ -35,7 +35,6 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated{
-
     
     [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:142/255.f green:68/255.f blue:173/255.f alpha:1.f]];
     
@@ -101,7 +100,7 @@
                                }];
     
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        
+
     }];
     [alert addAction:cancel];
     [alert addAction:done];

@@ -25,8 +25,9 @@
     [self audioSetup];
 }
 
+#pragma mark - initialisation and setup
+
 - (void) viewWillAppear:(BOOL)animated{
-    
     
     [self.tabBarController.tabBar setTintColor:[UIColor colorWithRed:253/255.f green:163/255.f blue:75/255.f alpha:1.f]];
     
@@ -120,6 +121,7 @@
     
     _minutes = 0;
     _seconds = 0;
+    _labeltimer.text = @"0.0";
     self.progressView.progress = 0.0;
     self.timer = [NSTimer scheduledTimerWithTimeInterval: 1.0
                                                   target: self
@@ -152,7 +154,6 @@
                                         selector:@selector(updateProgress)
                                         userInfo:nil
                                         repeats:YES];
-    
 }
 
 - (IBAction)actionBtnClose:(id)sender {
@@ -204,7 +205,6 @@
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"FireCell"];
     
     NSManagedObject *audio = [self.arrUrl objectAtIndex:indexPath.row];
-    
     cell.textLabel.text = [audio valueForKey:@"title"];
     
     return cell;
@@ -231,29 +231,58 @@
 
 }
 
-#pragma mark audio recorder and player delegates
+#pragma mark - audio recorder and player delegates
 
 - (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag{
-    int random = arc4random();
     
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSManagedObject *newAudio = [NSEntityDescription insertNewObjectForEntityForName:@"Audio" inManagedObjectContext:context];
-    [newAudio setValue:[NSString stringWithFormat:@"%@",_audioFileUrl] forKey:@"path"];
-    [newAudio setValue:[NSString stringWithFormat:@"audio%d",random] forKey:@"title"];
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:@"Save"
+                                  message:@"Save your audio as"
+                                  preferredStyle:UIAlertControllerStyleAlert];
     
-    NSError *error = nil;
-    if (![context save:&error]) {
-        NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
-    }
-    else{
+    UIAlertAction * cancel = [UIAlertAction
+                              actionWithTitle:@"Cancel"
+                              style:UIAlertActionStyleCancel
+                              handler:^(UIAlertAction * action)
+                              {
+                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                  
+                              }];
+    
+    UIAlertAction * done = [UIAlertAction
+                            actionWithTitle:@"Done"
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action)
+                            {
+                                NSManagedObjectContext *context = [self managedObjectContext];
+                                NSManagedObject *newAudio = [NSEntityDescription insertNewObjectForEntityForName:@"Audio" inManagedObjectContext:context];
+                                [newAudio setValue:[NSString stringWithFormat:@"%@",_audioFileUrl] forKey:@"path"];
+                                [newAudio setValue:[alert.textFields objectAtIndex:0].text forKey:@"title"];
+                                NSError *error = nil;
+                                if (![context save:&error]) {
+                                    NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+                                }
+                                else{
+                                    
+                                    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+                                    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Audio"];
+                                    self.arrUrl = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+                                    NSLog(@"%@",_arrUrl);
+                                    
+                                    [self.tableView reloadData];
+                                }
+
+
+                            [self dismissViewControllerAnimated:YES completion:nil];
+                            }];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         
-        NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Audio"];
-        self.arrUrl = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
-        NSLog(@"%@",_arrUrl);
-        
-        [self.tableView reloadData];
-    }
+    }];
+    [alert addAction:cancel];
+    [alert addAction:done];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 
 }
 
