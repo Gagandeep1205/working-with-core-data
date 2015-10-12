@@ -228,7 +228,6 @@
                                         userInfo:nil
                                         repeats:YES];
     [self.audioPlayer play];
-
 }
 
 #pragma mark - audio recorder and player delegates
@@ -270,6 +269,8 @@
                                     NSLog(@"%@",_arrUrl);
                                     
                                     [self.tableView reloadData];
+                                    [self.playerSuperView setHidden:YES];
+                                    [self.progressView setHidden:YES];
                                 }
 
 
@@ -291,7 +292,6 @@
 }
 
 #pragma mark - core data functions
-
 
 - (NSManagedObjectContext *)managedObjectContext
 {
